@@ -1,4 +1,4 @@
-# mobile
+# blog_mobile
 
 A new Flutter project.
 
