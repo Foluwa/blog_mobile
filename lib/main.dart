@@ -1,4 +1,6 @@
 import 'package:blog_mobile/constants/Constants.dart';
+import 'package:blog_mobile/pages/LaunchScreen.dart';
+import 'package:blog_mobile/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: LaunchScreen(),
+      home: LaunchScreen(), //(), HomePage
     );
   }
 }
