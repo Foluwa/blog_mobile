@@ -1,7 +1,6 @@
+import 'package:blog_mobile/pages/SignIn/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-
-import 'Home/Home.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({Key key}) : super(key: key);
@@ -14,17 +13,17 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-        seconds: 4,
+        seconds: 3,
         navigateAfterSeconds:
-            new BlogHomePage(), //OnBoardingPage(), BlogHomePage() SignIn
+            new SignIn(), //OnBoardingPage(), BlogHomePage() SignIn
         title: Text(
-          'Loan App Demo',
+          'Blog App Demo',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
         ),
         backgroundColor: Colors.white,
         styleTextUnderTheLoader: TextStyle(),
         photoSize: 100.0,
-        onClick: () => print('Loan App Demo'),
+        onClick: () => print('Blog App Demo'),
         loaderColor: Colors.red);
   }
 }

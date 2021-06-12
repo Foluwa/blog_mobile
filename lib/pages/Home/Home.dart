@@ -15,25 +15,29 @@ class Post {
 class BlogHomePage extends StatelessWidget {
   final data = [
     Post(
-      image: 'assets/images/ikigai.jpg',
+      image:
+          'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg', //'assets/images/ikigai.jpg',
       title: 'Finding your ikigai in your middle age',
       author: 'John Johny',
       date: '25 Mar 2020',
     ),
     Post(
-      image: 'assets/images/leader.jpg',
+      image:
+          'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg', //'assets/images/leader.jpg',
       title: 'How to Lead Before You Are in Charge',
       author: 'John Johny',
       date: '24 Mar 2020',
     ),
     Post(
-      image: 'assets/images/minimal.jpg',
+      image:
+          'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg', //'assets/images/minimal.jpg',
       title: 'How Minimalism Brought Me',
       author: 'John Johny',
       date: '15 Mar 2020',
     ),
     Post(
-      image: 'assets/images/colors.jpg',
+      image:
+          'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg', //'assets/images/colors.jpg',
       title: 'The Most Important Color In UI Design',
       author: 'John Johny',
       date: '11 Mar 2020',
@@ -60,8 +64,9 @@ class BlogHomePage extends StatelessWidget {
         actions: [
           InkWell(
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
-            ),
+                backgroundImage: NetworkImage(
+                    'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg') //AssetImage('assets/images/profile.jpg'),
+                ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -183,8 +188,12 @@ class BlogHomePage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            'assets/images/writing_1.jpg',
+                          // child: Image.asset(
+                          //   'assets/images/writing_1.jpg',
+                          //   fit: BoxFit.cover,
+                          // ),
+                          child: Image.network(
+                            'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -194,8 +203,12 @@ class BlogHomePage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            'assets/images/writing_2.jpg',
+                          // child: Image.asset(
+                          //   'assets/images/writing_2.jpg',
+                          //   fit: BoxFit.cover,
+                          // ),
+                          child: Image.network(
+                            'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -205,8 +218,12 @@ class BlogHomePage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            'assets/images/writing_3.jpg',
+                          // child: Image.asset(
+                          //   'assets/images/writing_3.jpg',
+                          //   fit: BoxFit.cover,
+                          // ),
+                          child: Image.network(
+                            'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg',
                             fit: BoxFit.cover,
                           ),
                         ),

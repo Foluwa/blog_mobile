@@ -9,18 +9,19 @@ import 'package:blog_mobile/widgets/Loaders/Loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final _globalkey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
 
+  TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -28,6 +29,7 @@ class _SignInState extends State<SignIn> {
   bool btnLoading = false;
   bool _passwordVisible = false;
 
+  @override
   void initState() {
     super.initState();
     _passwordVisible = false;
@@ -68,13 +70,13 @@ class _SignInState extends State<SignIn> {
                     children: <Widget>[
                       FadeAnimation(
                           1,
-                          Text("Login",
+                          Text("Sign Up",
                               style: TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold))),
                       SizedBox(height: 20),
                       FadeAnimation(
                           1.2,
-                          Text("Login to your account",
+                          Text("Create an account",
                               style: TextStyle(
                                   fontSize: 15, color: Colors.grey[700]))),
                     ],
@@ -92,24 +94,17 @@ class _SignInState extends State<SignIn> {
                                   obscureText: false,
                                   controller: _emailController)),
                           FadeAnimation(
+                              1.2,
+                              formInput(
+                                  label: "Username",
+                                  obscureText: false,
+                                  controller: _usernameController)),
+                          FadeAnimation(
                               1.3,
                               formInput(
                                   label: "Password",
                                   obscureText: true,
                                   controller: _passwordController)),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed('/forgot_password');
-                                },
-                                child: Text("Forgot Password?",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600)),
-                              ),
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -144,7 +139,7 @@ class _SignInState extends State<SignIn> {
                                       backgroundColor: Constants.white,
                                       valueColor: AlwaysStoppedAnimation<Color>(
                                           Constants.yellow))
-                                  : Text("Login",
+                                  : Text("Register",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 18)),
@@ -155,12 +150,12 @@ class _SignInState extends State<SignIn> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("Don't have an account?"),
+                          Text("Already have an account?"),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pushNamed('/sign_up');
+                              Navigator.of(context).pushNamed('/sign_in');
                             },
-                            child: Text("Sign up",
+                            child: Text("Sign in",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18)),
                           ),
@@ -172,7 +167,7 @@ class _SignInState extends State<SignIn> {
             FadeAnimation(
                 1.2,
                 Container(
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery.of(context).size.height / 5, //3
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/background.png'),
@@ -245,15 +240,31 @@ class _SignInState extends State<SignIn> {
         btnLoading = true;
       });
       Map<String, String> data = {
-        "username": _emailController.text,
+        "username": _usernameController.text,
+        "email": _emailController.text,
         "password": _passwordController.text,
       };
       print('DATA IS ${data}');
-      var response = await networkHandler.post(ApiRoutes.login, data);
+      var response = await networkHandler.post(ApiRoutes.register, data);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map<String, dynamic> output = json.decode(response.body);
         print(output["token"]);
+        print(output);
+        String msg = "Account created successful";
+        ScaffoldMessenger.of(context).showSnackBar(Loaders.messageSnackbar(
+          fontSize: 15.0,
+          title: msg.toString(),
+          onClick: SnackBarAction(
+            label: 'Dismiss',
+            textColor: Colors.white,
+            onPressed: () => {
+              setState(() {
+                // loading = false;
+              })
+            },
+          ),
+        ));
         await storage.write(key: "token", value: output["token"]);
         Navigator.of(context).pushNamed('/blog_home');
       } else {

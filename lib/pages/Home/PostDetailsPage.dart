@@ -139,7 +139,8 @@ class PostDetailsPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 16,
-                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                    backgroundImage: NetworkImage(
+                        'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg'), //AssetImage('assets/images/profile.jpg'),
                   ),
                   const SizedBox(
                     width: 8,
@@ -224,7 +225,10 @@ class PostDetailsPage extends StatelessWidget {
               Container(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(image),
+                  // child: Image.asset(image),
+                  child: Image.network(
+                    'https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg',
+                  ),
                 ),
               ),
               const SizedBox(
