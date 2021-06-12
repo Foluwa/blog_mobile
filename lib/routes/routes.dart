@@ -1,4 +1,4 @@
-import 'package:blog_mobile/pages/Home/Home.dart';
+import 'package:blog_mobile/pages/BlogHome/BlogHome.dart';
 import 'package:blog_mobile/pages/LaunchScreen.dart';
 import 'package:blog_mobile/pages/SignIn/SignIn.dart';
 import 'package:blog_mobile/pages/SignUp/SignUp.dart';
@@ -22,7 +22,7 @@ class RouteGenerator {
             type: PageTransitionType.bottomToTop, child: SignUp());
       case '/blog_home':
         return PageTransition(
-            type: PageTransitionType.bottomToTop, child: BlogHomePage());
+            type: PageTransitionType.bottomToTop, child: BlogHome());
       // case '/walkthrough':
       //   return MaterialPageRoute(builder: (_) => WalkThroughPage());
       default:

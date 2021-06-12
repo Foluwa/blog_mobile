@@ -14,8 +14,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
   Widget build(BuildContext context) {
     return SplashScreen(
         seconds: 3,
-        navigateAfterSeconds:
-            new SignIn(), //OnBoardingPage(), BlogHomePage() SignIn
+        navigateAfterSeconds: SignIn(),
         title: Text(
           'Blog App Demo',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),

@@ -1,18 +1,15 @@
-import 'package:blog_mobile/pages/Home/PostDetailsPage.dart';
+import 'package:blog_mobile/models/Post.dart';
+import 'package:blog_mobile/pages/PostDetails/PostDetails.dart';
 import 'package:blog_mobile/widgets/bottom_bar_widget.dart';
 import 'package:blog_mobile/widgets/post_cell_widget.dart';
 import 'package:flutter/material.dart';
 
-class Post {
-  final String title;
-  final String image;
-  final String author;
-  final String date;
-
-  Post({this.title, this.image, this.author, this.date});
+class BlogHome extends StatefulWidget {
+  @override
+  _BlogHomeState createState() => _BlogHomeState();
 }
 
-class BlogHomePage extends StatelessWidget {
+class _BlogHomeState extends State<BlogHome> {
   final data = [
     Post(
       image:
@@ -54,7 +51,7 @@ class BlogHomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Daily Prompt',
+          'Posts Update',
           style: TextStyle(
             color: Colors.black,
             fontSize: 26,
@@ -140,6 +137,8 @@ class BlogHomePage extends StatelessWidget {
                 ),
                 ListView.separated(
                   shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  // shrinkWrap: true,
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final post = data[index];
@@ -151,7 +150,7 @@ class BlogHomePage extends StatelessWidget {
                         onClick: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => PostDetailsPage(
+                              builder: (_) => PostDetails(
                                 title: post.title,
                                 image: post.image,
                                 author: post.author,

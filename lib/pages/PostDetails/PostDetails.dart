@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PostDetailsPage extends StatelessWidget {
+class PostDetails extends StatelessWidget {
   final String title;
   final String image;
   final String author;
   final String date;
-  PostDetailsPage(
+  PostDetails(
       {@required this.title,
       @required this.image,
       @required this.author,
